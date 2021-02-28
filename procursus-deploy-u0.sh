@@ -99,7 +99,7 @@ echo 'rm org.coolstar.sileo_1.8.1_iphoneos-arm.deb' >> odyssey-device-deploy.sh
 echo 'rm odyssey-device-deploy.sh' >> odyssey-device-deploy.sh
 
 echo "Downloading Resources..."
-curl -L -O https://github.com/coolstar/odyssey-bootstrap/raw/master/bootstrap_1500-ssh.tar.gz -O https://github.com/coolstar/odyssey-bootstrap/raw/master/bootstrap_1600-ssh.tar.gz -O https://github.com/coolstar/odyssey-bootstrap/raw/master/migration -O https://github.com/coolstar/odyssey-bootstrap/raw/master/org.coolstar.sileo_1.8.1_iphoneos-arm.deb
+curl -L -O https://github.com/coolstar/Odyssey-bootstrap/raw/master/bootstrap_1500.tar.gz -O https://github.com/coolstar/Odyssey-bootstrap/raw/master/bootstrap_1600.tar.gz -O https://github.com/coolstar/Odyssey-bootstrap/raw/master/migration -O https://github.com/coolstar/Odyssey-bootstrap/raw/master/org.coolstar.sileo_2.0.0b6_iphoneos-arm.deb
 clear
 if [[ ! "${ARM}" = yes ]]; then
 	echo "Copying Files to your device"
