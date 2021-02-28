@@ -47,16 +47,18 @@ echo 'chmod 0755 /odyssey/migration' >> odyssey-device-deploy.sh
 echo '/odyssey/migration' >> odyssey-device-deploy.sh
 echo 'rm -rf /odyssey' >> odyssey-device-deploy.sh
 echo 'else' >> odyssey-device-deploy.sh
-echo 'VER=$(/usr/bin/plutil -key ProductVersion /System/Library/CoreServices/SystemVersion.plist)' >> odyssey-device-deploy.sh
+echo 'VER=$(/binpack/usr/bin/plutil -key ProductVersion /System/Library/CoreServices/SystemVersion.plist)' >> odyssey-device-deploy.sh
 echo 'if [[ "${VER%.*}" -ge 12 ]] && [[ "${VER%.*}" -lt 13 ]]; then' >> odyssey-device-deploy.sh
 echo 'CFVER=1500' >> odyssey-device-deploy.sh
 echo 'elif [[ "${VER%.*}" -ge 13 ]]; then' >> odyssey-device-deploy.sh
 echo 'CFVER=1600' >> odyssey-device-deploy.sh
+echo 'elif [[ "${VER%.*}" -ge 14 ]]; then' >> odyssey-device-deploy.sh
+echo 'CFVER=1700' >> odyssey-device-deploy.sh
 echo 'else' >> odyssey-device-deploy.sh
 echo 'echo "${VER} not compatible."' >> odyssey-device-deploy.sh
 echo 'exit 1' >> odyssey-device-deploy.sh
 echo 'fi' >> odyssey-device-deploy.sh
-echo 'gzip -d bootstrap_${CFVER}-ssh.tar.gz' >> odyssey-device-deploy.sh
+echo 'gzip -d bootstrap_${CFVER}.tar.gz' >> odyssey-device-deploy.sh
 echo 'mount -uw -o union /dev/disk0s1s1' >> odyssey-device-deploy.sh
 echo 'rm -rf /etc/profile' >> odyssey-device-deploy.sh
 echo 'rm -rf /etc/profile.d' >> odyssey-device-deploy.sh
@@ -68,9 +70,7 @@ echo 'rm -rf /etc/dpkg' >> odyssey-device-deploy.sh
 echo 'rm -rf /Library/dpkg' >> odyssey-device-deploy.sh
 echo 'rm -rf /var/cache' >> odyssey-device-deploy.sh
 echo 'rm -rf /var/lib' >> odyssey-device-deploy.sh
-echo 'tar --preserve-permissions -xkf bootstrap_${CFVER}-ssh.tar -C /' >> odyssey-device-deploy.sh
-echo '/Library/dpkg/info/openssh.postinst || true' >> odyssey-device-deploy.sh
-echo 'launchctl load -w /Library/LaunchDaemons/com.openssh.sshd.plist || true' >> odyssey-device-deploy.sh
+echo 'tar --preserve-permissions -xkf bootstrap_${CFVER}.tar -C /' >> odyssey-device-deploy.sh
 printf %s 'SNAPSHOT=$(snappy -s | ' >> odyssey-device-deploy.sh
 printf %s "cut -d ' ' -f 3 | tr -d '\n')" >> odyssey-device-deploy.sh
 echo '' >> odyssey-device-deploy.sh
@@ -83,11 +83,14 @@ echo 'echo "URIs: https://repo.theodyssey.dev/" >> /etc/apt/sources.list.d/odyss
 echo 'echo "Suites: ./" >> /etc/apt/sources.list.d/odyssey.sources' >> odyssey-device-deploy.sh
 echo 'echo "Components: " >> /etc/apt/sources.list.d/odyssey.sources' >> odyssey-device-deploy.sh
 echo 'echo "" >> /etc/apt/sources.list.d/odyssey.sources' >> odyssey-device-deploy.sh
-echo 'mkdir -p /etc/apt/preferenced.d/' >> odyssey-device-deploy.sh
-echo 'echo "Package: *" > /etc/apt/preferenced.d/odyssey' >> odyssey-device-deploy.sh
-echo 'echo "Pin: release n=odyssey-ios" >> /etc/apt/preferenced.d/odyssey' >> odyssey-device-deploy.sh
-echo 'echo "Pin-Priority: 1001" >> /etc/apt/preferenced.d/odyssey' >> odyssey-device-deploy.sh
-echo 'echo "" >> /etc/apt/preferenced.d/odyssey' >> odyssey-device-deploy.sh
+echo 'mkdir -p /etc/apt/preferences.d/' >> odyssey-device-deploy.sh
+echo 'echo "Package: *" > /etc/apt/preferences.d/odyssey' >> odyssey-device-deploy.sh
+echo 'echo "Pin: release n=odyssey-ios" >> /etc/apt/preferences.d/odyssey' >> odyssey-device-deploy.sh
+echo 'echo "Pin-Priority: 1001" >> /etc/apt/preferences.d/odyssey' >> odyssey-device-deploy.sh
+echo 'echo "" >> /etc/apt/preferences.d/odyssey' >> odyssey-device-deploy.sh
+echo 'if [[ $VER = 12.1* ]] || [[ $VER = 12.0* ]]; then' >> odyssey-device-deploy.sh
+echo 'PATH=/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/usr/bin/X11:/usr/games dpkg -i org.swift.libswift_5.0-electra2_iphoneos-arm.deb' >> odyssey-device-deploy.sh
+echo 'fi' >> odyssey-device-deploy.sh
 echo 'PATH=/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/usr/bin/X11:/usr/games dpkg -i org.coolstar.sileo_2.0.0b6_iphoneos-arm.deb' >> odyssey-device-deploy.sh
 echo 'uicache -p /Applications/Sileo.app' >> odyssey-device-deploy.sh
 echo 'echo -n "" > /var/lib/dpkg/available' >> odyssey-device-deploy.sh
@@ -95,16 +98,18 @@ echo '/Library/dpkg/info/profile.d.postinst' >> odyssey-device-deploy.sh
 echo 'touch /.mount_rw' >> odyssey-device-deploy.sh
 echo 'touch /.installed_odyssey' >> odyssey-device-deploy.sh
 echo 'rm bootstrap*.tar*' >> odyssey-device-deploy.sh
+echo 'rm migration' >> odyssey-device-deploy.sh
 echo 'rm org.coolstar.sileo_2.0.0b6_iphoneos-arm.deb' >> odyssey-device-deploy.sh
+echo 'rm org.swift.libswift_5.0-electra2_iphoneos-arm.deb' >> odyssey-device-deploy.sh
 echo 'rm odyssey-device-deploy.sh' >> odyssey-device-deploy.sh
 
 echo "Downloading Resources..."
-curl -L -O https://github.com/coolstar/Odyssey-bootstrap/raw/master/bootstrap_1500-ssh.tar.gz -O https://github.com/coolstar/Odyssey-bootstrap/raw/master/bootstrap_1600.tar.gz -O https://github.com/coolstar/Odyssey-bootstrap/raw/master/migration -O https://github.com/coolstar/Odyssey-bootstrap/raw/master/org.coolstar.sileo_2.0.0b6_iphoneos-arm.deb
+curl -L -O https://github.com/coolstar/odyssey-bootstrap/raw/master/bootstrap_1500.tar.gz -O https://github.com/coolstar/odyssey-bootstrap/raw/master/bootstrap_1600.tar.gz -O https://github.com/coolstar/odyssey-bootstrap/raw/master/bootstrap_1700.tar.gz -O https://github.com/coolstar/odyssey-bootstrap/raw/master/migration -O https://github.com/coolstar/odyssey-bootstrap/raw/master/org.coolstar.sileo_2.0.0b6_iphoneos-arm.deb -O https://github.com/coolstar/odyssey-bootstrap/raw/master/org.swift.libswift_5.0-electra2_iphoneos-arm.deb
 clear
 if [[ ! "${ARM}" = yes ]]; then
 	echo "Copying Files to your device"
 	echo "Default password is: alpine"
-	scp -P4444 -o "StrictHostKeyChecking no" -o "UserKnownHostsFile=/dev/null" bootstrap_1500-ssh.tar.gz bootstrap_1600.tar.gz migration org.coolstar.sileo_2.0.0b6_iphoneos-arm.deb odyssey-device-deploy.sh root@127.0.0.1:/var/root/
+	scp -P4444 -o "StrictHostKeyChecking no" -o "UserKnownHostsFile=/dev/null" bootstrap_1500.tar.gz bootstrap_1600.tar.gz bootstrap_1700.tar.gz migration org.coolstar.sileo_2.0.0b6_iphoneos-arm.deb org.swift.libswift_5.0-electra2_iphoneos-arm.deb odyssey-device-deploy.sh root@127.0.0.1:/var/root/
 	clear
 fi
 echo "Installing Procursus bootstrap and Sileo on your device"
