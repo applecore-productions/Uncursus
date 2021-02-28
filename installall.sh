@@ -20,13 +20,13 @@ rm -rf /User/Documents/Uncursus
 mkdir /User/Documents/Uncursus
 apt update
 apt install wget -y --allow-unauthenticated
-wget https://github.com/DebianArch64/Uncursus/blob/new/DebProcursusSystem.zip?raw=true --directory-prefix=/User/Documents/Uncursus/
-unzip /User/Documents/Uncursus/DebProcursusSystem.zip?raw=true -d /User/Documents/Uncursus/
+wget https://github.com/DebianArch64/Uncursus/raw/new/DebProcursusSystem.zip --directory-prefix=/User/Documents/Uncursus/
+unzip /User/Documents/Uncursus/DebProcursusSystem.zip -d /User/Documents/Uncursus/
 dpkg -i /User/Documents/Uncursus/DebProcursusSystem/*.deb
 echo "Done. Create Custom Directory For Download All Files Requied. Path (/User/Documents/)."
 mkdir /User/Documents/Uncursus/u0
-wget https://github.com/DebianArch64/Uncursus/blob/new/DebPatch.zip?raw=true --directory-prefix=/User/Documents/Uncursus/
-unzip /User/Documents/Uncursus/DebPatch.zip?raw\=true -d /User/Documents/Uncursus/DebPatch
+wget https://github.com/DebianArch64/Uncursus/raw/new/DebPatch.zip --directory-prefix=/User/Documents/Uncursus/
+unzip /User/Documents/Uncursus/DebPatch.zip -d /User/Documents/Uncursus/DebPatch
 rm -rf /usr/bin/cynject
 wget https://apt.bingner.com/debs/1443.00/com.ex.substitute_0.1.14_iphoneos-arm.deb --no-check-certificate --directory-prefix=/User/Documents/Uncursus/u0
 wget https://apt.bingner.com/debs/1443.00/com.saurik.substrate.safemode_0.9.6003_iphoneos-arm.deb --no-check-certificate --directory-prefix=/User/Documents/Uncursus/u0
