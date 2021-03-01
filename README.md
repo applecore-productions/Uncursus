@@ -22,8 +22,6 @@ Steps :
 
 2) Rejailbreak With Unc0ver(Settings: tweaks disabled and openssh enabled)
 
-3) Open Cydia Refrsesh Sources And Install OpenSSH Package
-
 *** Must Have Computer For Launch The Script SSH Over IP  (Mac User : User Terminal) (Windows User : User CMD) DO NOT USE NEWTERM***
 
 4)  Find Your Device IP And Use Your PC Or Mac To Connect SSH Over IP
