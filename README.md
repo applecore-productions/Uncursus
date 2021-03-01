@@ -1,5 +1,5 @@
 # Uncurus
-
+# Don't use right now still have to fix some issues and more testing
 Uncursus : Procursus Bootstrap On Unc0ver Jailbreak
 
 A9-A13 Is Supported
