@@ -22,13 +22,15 @@ Steps :
 
 2) Rejailbreak With Unc0ver(Settings: openssh enabled)
 
+3) Install Curl from Cydia
+
 *** Must Have Computer For Launch The Script SSH Over IP  (Mac User : User Terminal) (Windows User : User CMD) DO NOT USE NEWTERM***
 
-3)  Find Your Device IP And Use Your PC Or Mac To Connect SSH Over IP
+4)  Find Your Device IP And Use Your PC Or Mac To Connect SSH Over IP
 
-4) Put The Command In Your SSH Over IP Session : /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/DebianArch64/Uncursus/new/installall.sh)"
+5) Put The Command In Your SSH Over IP Session : /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/DebianArch64/Uncursus/new/installall.sh)"
 
-5) Wait. Your Device Should Respring, Launch Sileo And Profit
+6) Wait. Your Device Should Respring, Launch Sileo And Profit
 
 
 Any Bug Report Will Be Appreciat ;) 
