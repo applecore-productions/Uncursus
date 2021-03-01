@@ -20,7 +20,7 @@ Steps :
 
 1) You have to restore rootfs with unc0ver
 
-2) Rejailbreak With Unc0ver
+2) Rejailbreak With Unc0ver(Settings: tweaks disabled and openssh enabled)
 
 3) Open Cydia Refrsesh Sources And Install OpenSSH Package
 
