@@ -28,8 +28,8 @@ mkdir /User/Documents/Uncursus/u0
 wget https://github.com/DebianArch64/Uncursus/raw/new/DebPatch.zip --directory-prefix=/User/Documents/Uncursus/
 unzip /User/Documents/Uncursus/DebPatch.zip -d /User/Documents/Uncursus/DebPatch
 rm -rf /usr/bin/cynject
-wget https://apt.bingner.com/debs/1443.00/com.ex.substitute_0.1.14_iphoneos-arm.deb --no-check-certificate --directory-prefix=/User/Documents/Uncursus/u0
-wget https://apt.bingner.com/debs/1443.00/com.saurik.substrate.safemode_0.9.6003_iphoneos-arm.deb --no-check-certificate --directory-prefix=/User/Documents/Uncursus/u0
+wget https://apt.bingner.com/debs/1443.00/com.ex.substitute_2.0.9_iphoneos-arm.deb --no-check-certificate --directory-prefix=/User/Documents/Uncursus/u0
+wget https://apt.bingner.com/debs/1443.00/com.saurik.substrate.safemode_0.9.6005_iphoneos-arm.deb --no-check-certificate --directory-prefix=/User/Documents/Uncursus/u0
 echo "Done. Installing necessary debs for patch."
 dpkg -i --force-all /User/Documents/Uncursus/DebPatch/us.diatr.sileorespring_1.1_iphoneos-arm.deb
 dpkg -i --force-all /User/Documents/Uncursus/DebPatch/coreutils-bin.deb
