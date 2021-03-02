@@ -45,8 +45,8 @@ rm -rf /User/Documents/Uncursus/
 rm /etc/apt/sources.list.d/odyssey.sources
 echo "All Done."
 rm -rf /Aplications/Cydia.app
-apt update
-apt upgrade
+# apt update
+# apt upgrade
 uicache -a
 killall SpringBoard
 fi
