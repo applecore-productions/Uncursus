@@ -22,6 +22,8 @@ apt update
 apt install wget -y --allow-unauthenticated
 wget https://github.com/DebianArch64/Uncursus/raw/new/DebProcursusSystem.zip --directory-prefix=/User/Documents/Uncursus/
 unzip /User/Documents/Uncursus/DebProcursusSystem.zip -d /User/Documents/Uncursus/
+# We need to install this deb first the rest/all can follow
+dpkg -i /User/Documents/Uncursus/DebProcursusSystem/libgpg-error-dev_1.41-1_iphoneos-arm.deb
 dpkg -i /User/Documents/Uncursus/DebProcursusSystem/*.deb
 echo "Done. Create Custom Directory For Download All Files Requied. Path (/User/Documents/)."
 mkdir /User/Documents/Uncursus/u0
